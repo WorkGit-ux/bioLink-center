@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مركز أنس نجم التجاري | Stable Glass Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>  
+    :root {
+      --bg: #030507;
+      --accent1: #ffb400;
+      --accent2: #ff6a3d;
+      --glass-bg: rgba(255, 255, 255, 0.02);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text: #ffffff;
+      --shadow: 0 50px 100px rgba(0, 0, 0, 0.7);
+    }
+
+    * { box-sizing: border-box; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background-color: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    /* --- تنسيق إشعار النسخ العصري --- */
+    .copy-toast {
+      position: fixed;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 180, 0, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--accent1);
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 20px;
+      font-weight: 600;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .copy-toast.show {
+      bottom: 40px;
+    }
+
+    .liquid-bg {
+      position: fixed;
+      inset: -10%;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255, 180, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 106, 61, 0.08) 0%, transparent 40%);
+      filter: blur(100px);
+      animation: liquidMove 15s infinite alternate linear;
+      z-index: -1;
+    }
+
+    @keyframes liquidMove {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(5%, 5%) scale(1.2); }
+    }
+
+    .shell {
+      width: min(1300px, 95%);
+      min-height: 750px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .corner-logo {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 140px;
+      height: 140px;
+      background: rgba(255,180,0,0.05);
+      border: 2px solid var(--accent1);
+      border-radius: 35px;
+      padding: 15px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 40px rgba(255,180,0,0.15);
+      animation: logoFloat 6s infinite ease-in-out;
+      z-index: 10;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translate(0, 0) rotate(0); }
+      50% { transform: translate(-10px, 10px) rotate(3deg); }
+    }
+
+    .corner-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+    .left-side {
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 30px;
+      border-left: 1px solid var(--glass-border);
+    }
+
+    .brand-info h1 {
+      font-size: 38px;
+      font-weight: 900;
+      margin: 0;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-info p { color: rgba(255,255,255,0.7); margin-top: 10px; font-size: 16px; }
+
+    .hero-card {
+      background: rgba(255,255,255,0.03);
+      padding: 35px;
+      border-radius: 35px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .status-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      background: rgba(46, 204, 113, 0.1);
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(46, 204, 113, 0.3);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .profile-badge:hover {
+      background: rgba(255, 180, 0, 0.1);
+      border-color: var(--accent1);
+      transform: translateY(-5px);
+    }
+
+    .status-dot { width: 10px; height: 10px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 15px #2ecc71; animation: pulseGlow 2s infinite; }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+    }
+
+    .address-card {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .right-side {
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .pill-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; 
+      padding: 18px 25px;
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .pill-btn:hover {
+      background: rgba(255, 180, 0, 0.15);
+      border-color: var(--accent1);
+      transform: translateY(-5px);
+    }
+
+    .icon-box {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 1.2rem;
+      order: 2;
+    }
+    
+    .pill-btn span {
+      order: 1;
+      margin-left: auto;
+    }
+
+    @media (max-width: 1000px) {
+      .shell { grid-template-columns: 1fr; height: auto; border-radius: 0; width: 100%; overflow-y: auto; }
+      .corner-logo { position: relative; top: 0; right: 0; margin: 20px auto 10px; width: 130px; height: 130px; }
+      .left-side { padding: 20px; text-align: center; align-items: center; border: none; gap: 15px; }
+      .brand-info h1 { font-size: 28px; }
+      .address-card { text-align: center; font-size: 15px; }
+      .status-row { justify-content: center; }
+      .right-side { padding: 10px 20px 40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="liquid-bg"></div>
+
+  <div id="copyToast" class="copy-toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg">تم النسخ بنجاح</span>
+  </div>
+
+  <div class="shell">
+    <div class="corner-logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+
+    <section class="left-side">
+      <div class="brand-info">
+        <h1>مركز أنس نجم التجاري</h1>
+        <p>مستحضرات تجميل • قسم حريمي • تواصل سريع</p>
+      </div>
+
+      <div class="hero-card">
+        <div class="status-row">
+          <div class="status-badge">
+            <div class="status-dot"></div>
+            متاحين للرد الآن
+          </div>
+          <a href="https://www.facebook.com/share/16qR3YxNEW/" target="_blank" class="profile-badge"><i class="fa-solid fa-user" style="margin-left: 8px;"></i> الصفحة الشخصية</a>
+        </div>
+
+        <div class="address-card">
+          📍 كفر الشيخ - بلطيم - ٦١ الخاشعة - الشارع الرئيسي بجوار شارع المدارس<br>
+          📞 للتواصل: 01060950363
+        </div>
+        
+        <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+201060950363" class="pill-btn" style="background: linear-gradient(135deg, var(--accent1), var(--accent2)); border: none; color: #000; font-weight: 800; flex: 1; min-width: 110px; justify-content: center; padding: 12px 20px;">
+            <i class="fa-solid fa-phone" style="margin-left: 8px;"></i> اتصال
+          </a>
+          <a href="https://wa.me/201060950363" target="_blank" class="pill-btn" style="background: linear-gradient(135deg, var(--accent1), var(--accent2)); border: none; color: #000; font-weight: 800; flex: 1; min-width: 110px; justify-content: center; padding: 12px 20px;">
+            <i class="fa-brands fa-whatsapp" style="margin-left: 8px;"></i> مراسلة
+          </a>
+          <button onclick="copyText('01060950363', 'تم نسخ الرقم ✅')" class="pill-btn" style="flex: 1; min-width: 100px; justify-content: center; padding: 12px 20px;">
+            <i class="fa-solid fa-copy" style="margin-left: 8px;"></i> نسخ
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="right-side" id="menu"></section>
+  </div>
+
+<script>
+  const links = [
+    { title: "فيسبوك الرسمي", icon: '<i class="fa-brands fa-facebook-f"></i>', url: "https://www.facebook.com/share/18K8Rw47xE/" },
+    { title: "قناة واتساب القسم العام", icon: '<i class="fa-solid fa-bullhorn"></i>', url: "https://whatsapp.com/channel/0029VbAS9Cl8vd1SrHfbi32C" },
+    { title: "قناة واتساب القسم الحريمي", icon: '<i class="fa-solid fa-bag-shopping"></i>', url: "https://whatsapp.com/channel/0029Vb5sTIEBqbr0CiBDbz3e" },
+    { title: "تيليجرام القسم العام", icon: '<i class="fa-brands fa-telegram"></i>', url: "https://t.me/Anas_negmm" },
+    { title: "تيليجرام القسم الحريمي", icon: '<i class="fa-solid fa-female"></i>', url: "https://t.me/Anasngm246s" },
+    { title: "انستجرام الرسمي", icon: '<i class="fa-brands fa-instagram"></i>', url: "https://www.instagram.com/anasnejmcom?igsh=ajI1bnh1NGQ4NDJi" },
+    { title: "تيك توك الرسمي", icon: '<i class="fa-brands fa-tiktok"></i>', url: "https://www.tiktok.com/@anasnegm81" }
+  ];
+
+  function render() {
+    const container = document.getElementById("menu");
+    links.forEach(l => {
+      container.innerHTML += `
+        <a href="${l.url}" class="pill-btn" target="_blank">
+          <div class="icon-box">${l.icon}</div>
+          <span>${l.title}</span>
+        </a>`;
+    });
+  }
+
+  // وظيفة النسخ المحسنة مع الإشعار العصري
+  async function copyText(text, msg) {
+    try {
+      await navigator.clipboard.writeText(text);
+      const toast = document.getElementById("copyToast");
+      const toastMsg = document.getElementById("toastMsg");
+      
+      toastMsg.innerText = msg;
+      toast.classList.add("show");
+      
+      // إخفاء الإشعار بعد 3 ثواني
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    } catch (err) {
+      console.error("فشل النسخ: ", err);
+    }
+  }
+
+  render();
+</script>
+</body>
+</html>
